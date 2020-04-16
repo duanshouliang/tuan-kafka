@@ -1,4 +1,4 @@
-package com.tuan.sl.elasticsearch.handler;
+package com.tuan.sl.elasticsearch.handler.search;
 
 import com.alibaba.fastjson.JSONObject;
 import com.tuan.sl.elasticsearch.event.SearchEvent;

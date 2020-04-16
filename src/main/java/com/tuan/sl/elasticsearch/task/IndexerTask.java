@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @AllArgsConstructor
 @Data
-public class IndexTask implements Serializable{
+public class IndexerTask implements Serializable{
     private IndexEvent event;
     private Indexer indexer;
 }

@@ -1,9 +1,9 @@
 package com.tuan.sl.kafka;
 
 import com.alibaba.fastjson.JSON;
-import com.tuan.sl.elasticsearch.index.runner.IndexRunner;
-import com.tuan.sl.elasticsearch.task.IndexTask;
-import com.tuan.sl.elasticsearch.task.IndexTaskBuilder;
+import com.tuan.sl.elasticsearch.index.runner.IndexerRunner;
+import com.tuan.sl.elasticsearch.task.IndexerTask;
+import com.tuan.sl.elasticsearch.task.IndexerTaskBuilder;
 import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -20,12 +20,12 @@ public class KafkaConsumerWrapper implements Runnable {
     private static final String GROUP_ID_KEY="group.id";
     private KafkaContext context;
     private KafkaConsumer<String, String> consumer;
-    private IndexRunner indexRunner;
+    private IndexerRunner indexerRunner;
     private TransportClient transportClient;
 
-    public KafkaConsumerWrapper(KafkaContext context, IndexRunner indexRunner,TransportClient transportClient){
+    public KafkaConsumerWrapper(KafkaContext context, IndexerRunner indexerRunner, TransportClient transportClient){
         this.context = context;
-        this.indexRunner = indexRunner;
+        this.indexerRunner = indexerRunner;
         this.transportClient = transportClient;
     }
     public void subscribe(String topic){
@@ -55,8 +55,8 @@ public class KafkaConsumerWrapper implements Runnable {
             }
             records.forEach(record ->{
                 LOGGER.info("Message content: "+ record.value() + "partition["+ record.partition()+"] topic: " + record.topic());
-                IndexTask indexTask = IndexTaskBuilder.build(record, transportClient);
-                indexRunner.submitTask(indexTask);
+                IndexerTask indexerTask = IndexerTaskBuilder.build(record, transportClient);
+                indexerRunner.submitTask(indexerTask);
             });
         }
     }

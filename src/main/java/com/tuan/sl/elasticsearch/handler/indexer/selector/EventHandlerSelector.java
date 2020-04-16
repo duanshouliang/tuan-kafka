@@ -1,4 +1,7 @@
-package com.tuan.sl.elasticsearch.handler;
+package com.tuan.sl.elasticsearch.handler.indexer.selector;
+
+import com.tuan.sl.elasticsearch.handler.indexer.CanalTestIndexEventHandler;
+import com.tuan.sl.elasticsearch.handler.indexer.IndexEventHandler;
 
 public class EventHandlerSelector {
 

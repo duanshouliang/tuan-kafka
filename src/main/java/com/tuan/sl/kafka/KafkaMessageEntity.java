@@ -1,11 +1,11 @@
-package com.tuan.sl.model;
+package com.tuan.sl.kafka;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class RowEntity implements Serializable {
+public class KafkaMessageEntity implements Serializable {
 
     private String instanceName;
     private String schemaName;

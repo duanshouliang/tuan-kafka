@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.tuan.sl.common.Result;
 import com.tuan.sl.elasticsearch.event.IndexEvent;
 import com.tuan.sl.elasticsearch.index.indexer.Indexer;
-import com.tuan.sl.elasticsearch.task.IndexTask;
+import com.tuan.sl.elasticsearch.task.IndexerTask;
 import com.tuan.sl.enumeration.IndexEventEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,18 +13,18 @@ import java.util.Arrays;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class IndexRunner {
-    private static final Logger LOGGER = LoggerFactory.getLogger(IndexRunner.class);
-    private BlockingQueue<IndexTask> tasks;
+public class IndexerRunner {
+    private static final Logger LOGGER = LoggerFactory.getLogger(IndexerRunner.class);
+    private BlockingQueue<IndexerTask> tasks;
     private Thread worker;
 
-    public IndexRunner(){
+    public IndexerRunner(String topic){
         tasks = new LinkedBlockingQueue<>(200);
         worker = new Thread(new Runnable() {
             @Override
             public void run() {
                 while (!Thread.interrupted()){
-                    IndexTask task = null;
+                    IndexerTask task = null;
                     try {
                         task = tasks.take();
                     } catch (InterruptedException e) {
@@ -57,11 +57,11 @@ public class IndexRunner {
                 }
             }
         });
-
+        worker.setName(topic);
         worker.start();
     }
 
-    public void submitTask(IndexTask task){
+    public void submitTask(IndexerTask task){
         tasks.add(task);
     }
 }

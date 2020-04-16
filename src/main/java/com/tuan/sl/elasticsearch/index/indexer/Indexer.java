@@ -35,7 +35,7 @@ public abstract class Indexer {
         try{
             response = requestBuilder.get();
         }catch (Exception e){
-            LOGGER.error("Bulk index for {} with exception {}, stack {}", topic, e.getMessage(), Arrays.toString(e.getStackTrace()));
+            LOGGER.error("Bulk indexer for {} with exception {}, stack {}", topic, e.getMessage(), Arrays.toString(e.getStackTrace()));
         }
         if(response.status() == RestStatus.CREATED){
             return Result.success();

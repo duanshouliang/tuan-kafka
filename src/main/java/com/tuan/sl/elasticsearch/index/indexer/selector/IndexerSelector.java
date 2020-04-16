@@ -1,4 +1,4 @@
-package com.tuan.sl.elasticsearch.index.indexer;
+package com.tuan.sl.elasticsearch.index.indexer.selector;
 
 import com.tuan.sl.elasticsearch.index.indexer.CanalTestTableIndexer;
 import com.tuan.sl.elasticsearch.index.indexer.Indexer;

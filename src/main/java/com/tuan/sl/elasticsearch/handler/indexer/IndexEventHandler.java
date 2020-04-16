@@ -1,9 +1,8 @@
-package com.tuan.sl.elasticsearch.handler;
+package com.tuan.sl.elasticsearch.handler.indexer;
 
 
-import com.alibaba.fastjson.JSONObject;
 import com.tuan.sl.elasticsearch.event.IndexEvent;
-import com.tuan.sl.model.RowEntity;
+import com.tuan.sl.kafka.KafkaMessageEntity;
 
 /**
  *
@@ -11,7 +10,7 @@ import com.tuan.sl.model.RowEntity;
  *
  */
 public class IndexEventHandler {
-    public IndexEvent handle(RowEntity rowEntity, String topic){
+    public IndexEvent handle(KafkaMessageEntity kafkaMessageEntity){
         return null;
     }
 }
