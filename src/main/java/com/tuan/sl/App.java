@@ -1,13 +1,20 @@
 package com.tuan.sl;
 
+import com.tuan.sl.consumer.KafkaConsumerWrapper;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
 /**
  * Hello world!
  *
  */
-public class App 
+@SpringBootApplication
+public class App
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+    public static void main(String[] args){
+        ConfigurableApplicationContext ca = SpringApplication.run(App.class,args);
+        KafkaConsumerWrapper kafkaConsumerWrapper = new KafkaConsumerWrapper();
+//        kafkaConsumerWrapper.consume()consume;
     }
 }
