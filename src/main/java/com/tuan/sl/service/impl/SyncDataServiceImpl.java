@@ -45,7 +45,6 @@ public class SyncDataServiceImpl implements SyncDataService {
             IndexerRunner indexerRunner = new IndexerRunner(topic +" elasticsearch thread");
             KafkaConsumerWrapper consumer = new KafkaConsumerWrapper(context, indexerRunner,transportClient);
             consumer.subscribe(topic);
-//            kafkaConsumers.put(topic, consumer);
             executors.submit(consumer);
         });
     }

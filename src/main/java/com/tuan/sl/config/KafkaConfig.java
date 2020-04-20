@@ -39,7 +39,7 @@ public class KafkaConfig {
 //        context.addConfig("group.id", groupId);
         /* 自动确认offset的时间间隔 */
         context.addConfig("auto.commit.interval.ms", autoCommitInterval);
-        context.addConfig("session.timeout.ms", sessionTimeout);
+        context.addConfig("session.timeout.ms", 30000);
         context.addConfig("max.poll.interval.ms", maxPollInterval);
         context.addConfig("auto.offset.reset", autoOffsetReset); // 必须加
         /* key的序列化类 */

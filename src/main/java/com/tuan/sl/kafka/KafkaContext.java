@@ -13,7 +13,7 @@ public class KafkaContext {
 
     public static KafkaContext getInstance(){
         if(null == context){
-            synchronized (KafkaContext.context){
+            synchronized (KafkaContext.class){
                 if(null == context){
                     context = new KafkaContext();
                 }

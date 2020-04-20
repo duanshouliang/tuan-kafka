@@ -23,15 +23,15 @@ public class IndexerRunner {
         worker = new Thread(new Runnable() {
             @Override
             public void run() {
+                int i=0;
                 while (!Thread.interrupted()){
+                    LOGGER.info((i++)+"");
                     IndexerTask task = null;
                     try {
                         task = tasks.take();
+                        LOGGER.info("contnet: "+JSON.toJSONString(task));
                     } catch (InterruptedException e) {
                         LOGGER.error("Get new task with exception {}, stack {}", e.getMessage(), Arrays.toString(e.getStackTrace()));
-                    }
-                    if(null == task){
-                        continue;
                     }
                     Result<String> result = null;
                     IndexEvent event = task.getEvent();

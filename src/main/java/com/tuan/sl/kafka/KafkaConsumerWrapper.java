@@ -48,16 +48,19 @@ public class KafkaConsumerWrapper implements Runnable {
     }
     @Override
     public void run() {
-        while (!Thread.interrupted()){
+        while (!Thread.interrupted()) {
             ConsumerRecords<String, String> records = consumer.poll(100);
-            if(records.count() == 0){
-                continue;
+            if (records.count() == 0) {
+                LOGGER.info("No new message!");
+            } else {
+                records.forEach(record -> {
+                    LOGGER.info("Message content: " + record.value() + "partition[" + record.partition() + "] topic: " + record.topic());
+                    IndexerTask indexerTask = IndexerTaskBuilder.build(record, transportClient);
+                    if(null != indexerTask) {
+                        indexerRunner.submitTask(indexerTask);
+                    }
+                });
             }
-            records.forEach(record ->{
-                LOGGER.info("Message content: "+ record.value() + "partition["+ record.partition()+"] topic: " + record.topic());
-                IndexerTask indexerTask = IndexerTaskBuilder.build(record, transportClient);
-                indexerRunner.submitTask(indexerTask);
-            });
         }
     }
 }

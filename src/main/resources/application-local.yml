@@ -20,7 +20,7 @@ spring:
     enable_auto_commit: true
     topics: data_pipeline2
 server:
-  port: 11080
+  port: 12080
   context-path: /kafka
 
 
